@@ -1,0 +1,460 @@
+{
+  "proyecto": "ACA2 – Sentimiento de reseñas con BETO",
+  "grupo": 8,
+  "versiones": {
+    "python": "3.13.16",
+    "torch": "2.14.1+cu130",
+    "transformers": "5.22.1",
+    "datasets": "4.8.5",
+    "sklearn": "1.6.1",
+    "gpu": "Tesla T4"
+  },
+  "config": {
+    "modelo_base": "dccuchile/bert-base-spanish-wwm-cased",
+    "dataset": "mteb/AmazonReviewsClassification/es",
+    "n_por_estrella": 6000,
+    "epocas": 2,
+    "max_len": 128,
+    "batch": 32,
+    "lr": 2e-05,
+    "seed": 42,
+    "pesos_clase": {
+      "negativo": 0.8333333333333334,
+      "neutro": 1.6666666666666667,
+      "positivo": 0.8333333333333334
+    },
+    "gpu": true
+  },
+  "datos": {
+    "n_train_completo": 200000,
+    "n_train": 30000,
+    "n_val": 5000,
+    "n_test": 5000,
+    "dist_train": {
+      "negativo": 12000,
+      "neutro": 6000,
+      "positivo": 12000
+    },
+    "palabras_por_estrella": [
+      {
+        "estrellas": 1,
+        "n": 6000,
+        "palabras_promedio": 31.6,
+        "minimo": 4,
+        "maximo": 253
+      },
+      {
+        "estrellas": 2,
+        "n": 6000,
+        "palabras_promedio": 34.7,
+        "minimo": 4,
+        "maximo": 253
+      },
+      {
+        "estrellas": 3,
+        "n": 6000,
+        "palabras_promedio": 32.3,
+        "minimo": 3,
+        "maximo": 467
+      },
+      {
+        "estrellas": 4,
+        "n": 6000,
+        "palabras_promedio": 29.2,
+        "minimo": 3,
+        "maximo": 372
+      },
+      {
+        "estrellas": 5,
+        "n": 6000,
+        "palabras_promedio": 27.3,
+        "minimo": 4,
+        "maximo": 369
+      }
+    ],
+    "tokens_percentiles": {
+      "50": 33,
+      "90": 75,
+      "95": 97,
+      "99": 156
+    },
+    "pct_truncadas": 0.020566666666666667,
+    "palabras_frecuentes": {
+      "negativo": [
+        [
+          "calidad",
+          2230
+        ],
+        [
+          "producto",
+          2224
+        ],
+        [
+          "mal",
+          1251
+        ],
+        [
+          "mala",
+          1188
+        ],
+        [
+          "funciona",
+          1029
+        ],
+        [
+          "recomiendo",
+          856
+        ],
+        [
+          "llegado",
+          833
+        ],
+        [
+          "precio",
+          821
+        ]
+      ],
+      "neutro": [
+        [
+          "calidad",
+          1277
+        ],
+        [
+          "precio",
+          1047
+        ],
+        [
+          "producto",
+          742
+        ],
+        [
+          "buena",
+          713
+        ],
+        [
+          "mal",
+          541
+        ],
+        [
+          "bastante",
+          534
+        ],
+        [
+          "aunque",
+          480
+        ],
+        [
+          "buen",
+          471
+        ]
+      ],
+      "positivo": [
+        [
+          "calidad",
+          3555
+        ],
+        [
+          "buena",
+          3226
+        ],
+        [
+          "precio",
+          2813
+        ],
+        [
+          "buen",
+          2133
+        ],
+        [
+          "producto",
+          1945
+        ],
+        [
+          "perfecto",
+          1724
+        ],
+        [
+          "compra",
+          1051
+        ],
+        [
+          "cumple",
+          996
+        ]
+      ]
+    }
+  },
+  "entrenamiento": {
+    "minutos": 12.12,
+    "pasos_por_epoca": 938,
+    "mejor_checkpoint": "checkpoints/checkpoint-1876",
+    "mejor_f1_val": 0.7382395185482684,
+    "historial_eval": [
+      {
+        "step": 234,
+        "epoch": 0.24947,
+        "eval_loss": 0.56793,
+        "eval_accuracy": 0.7774,
+        "eval_f1_macro": 0.70583
+      },
+      {
+        "step": 468,
+        "epoch": 0.49893,
+        "eval_loss": 0.56711,
+        "eval_accuracy": 0.7544,
+        "eval_f1_macro": 0.72413
+      },
+      {
+        "step": 702,
+        "epoch": 0.7484,
+        "eval_loss": 0.55529,
+        "eval_accuracy": 0.7774,
+        "eval_f1_macro": 0.72109
+      },
+      {
+        "step": 936,
+        "epoch": 0.99787,
+        "eval_loss": 0.53902,
+        "eval_accuracy": 0.7706,
+        "eval_f1_macro": 0.73597
+      },
+      {
+        "step": 1170,
+        "epoch": 1.24733,
+        "eval_loss": 0.56077,
+        "eval_accuracy": 0.773,
+        "eval_f1_macro": 0.73339
+      },
+      {
+        "step": 1404,
+        "epoch": 1.4968,
+        "eval_loss": 0.55647,
+        "eval_accuracy": 0.774,
+        "eval_f1_macro": 0.73659
+      },
+      {
+        "step": 1638,
+        "epoch": 1.74627,
+        "eval_loss": 0.57523,
+        "eval_accuracy": 0.7616,
+        "eval_f1_macro": 0.73292
+      },
+      {
+        "step": 1872,
+        "epoch": 1.99574,
+        "eval_loss": 0.55539,
+        "eval_accuracy": 0.7708,
+        "eval_f1_macro": 0.73788
+      },
+      {
+        "step": 1876,
+        "epoch": 2.0,
+        "eval_loss": 0.55535,
+        "eval_accuracy": 0.7712,
+        "eval_f1_macro": 0.73824
+      }
+    ],
+    "n_parametros": 109853187
+  },
+  "baseline": {
+    "accuracy": 0.7374,
+    "f1_macro": 0.695413328093184,
+    "f1_ponderado": 0.7430727206473794,
+    "por_clase": {
+      "negativo": {
+        "precision": 0.8135593220338984,
+        "recall": 0.792,
+        "f1": 0.8026349125918419,
+        "soporte": 2000
+      },
+      "neutro": {
+        "precision": 0.4261019878997407,
+        "recall": 0.493,
+        "f1": 0.4571163653222068,
+        "soporte": 1000
+      },
+      "positivo": {
+        "precision": 0.8491561181434599,
+        "recall": 0.805,
+        "f1": 0.8264887063655031,
+        "soporte": 2000
+      }
+    },
+    "matriz_confusion": [
+      [
+        1584,
+        353,
+        63
+      ],
+      [
+        284,
+        493,
+        223
+      ],
+      [
+        79,
+        311,
+        1610
+      ]
+    ],
+    "errores_graves": 142,
+    "segundos_entrenamiento": 23.3
+  },
+  "beto": {
+    "accuracy": 0.7772,
+    "f1_macro": 0.7435485389348839,
+    "f1_ponderado": 0.786175095737178,
+    "por_clase": {
+      "negativo": {
+        "precision": 0.8765840220385674,
+        "recall": 0.7955,
+        "f1": 0.8340760157273919,
+        "soporte": 2000
+      },
+      "neutro": {
+        "precision": 0.4715953307392996,
+        "recall": 0.606,
+        "f1": 0.5304157549234135,
+        "soporte": 1000
+      },
+      "positivo": {
+        "precision": 0.8889473684210526,
+        "recall": 0.8445,
+        "f1": 0.8661538461538462,
+        "soporte": 2000
+      }
+    },
+    "matriz_confusion": [
+      [
+        1591,
+        390,
+        19
+      ],
+      [
+        202,
+        606,
+        192
+      ],
+      [
+        22,
+        289,
+        1689
+      ]
+    ],
+    "errores_graves": 41,
+    "ms_por_resena": 17.14
+  },
+  "ejemplos_propios": [
+    {
+      "texto": "Me encantó, llegó antes de lo esperado y funciona perfecto. Lo recomiendo.",
+      "prediccion": "positivo",
+      "probabilidades": {
+        "positivo": 0.9846,
+        "neutro": 0.0135,
+        "negativo": 0.0019
+      }
+    },
+    {
+      "texto": "Pésimo. Se dañó a la semana y el vendedor no responde.",
+      "prediccion": "negativo",
+      "probabilidades": {
+        "negativo": 0.9846,
+        "neutro": 0.0137,
+        "positivo": 0.0017
+      }
+    },
+    {
+      "texto": "Está bien para el precio, aunque el material se siente un poco frágil.",
+      "prediccion": "neutro",
+      "probabilidades": {
+        "neutro": 0.81,
+        "positivo": 0.1573,
+        "negativo": 0.0327
+      }
+    },
+    {
+      "texto": "No es lo que esperaba, pero tampoco es malo.",
+      "prediccion": "neutro",
+      "probabilidades": {
+        "neutro": 0.7722,
+        "positivo": 0.1699,
+        "negativo": 0.058
+      }
+    },
+    {
+      "texto": "La talla venía más pequeña, tocó devolverlo. El servicio de devolución sí fue rápido.",
+      "prediccion": "negativo",
+      "probabilidades": {
+        "negativo": 0.4831,
+        "neutro": 0.4807,
+        "positivo": 0.0362
+      }
+    }
+  ],
+  "errores_muestra": [
+    {
+      "estrellas": 3,
+      "real": "neutro",
+      "pred": "negativo",
+      "confianza": 0.9879999756813049,
+      "texto": "Mala calidad Mala calidad, solo funciona la mitad, nada recomendable"
+    },
+    {
+      "estrellas": 3,
+      "real": "neutro",
+      "pred": "positivo",
+      "confianza": 0.9829999804496765,
+      "texto": "Comoda Me ha encantado, es súper comoda Mi bebe tiene 9 meses, y es perfecta para ella, y muy segura. Va contenta cuando la paseo."
+    },
+    {
+      "estrellas": 3,
+      "real": "neutro",
+      "pred": "negativo",
+      "confianza": 0.9829999804496765,
+      "texto": "Vendedor responsable. Mala calidad. Son corrientes. Varios rotos, con agujero, y casi todos se desinchan al cabo de 2 horas. El brillo del anuncio no es real. Muy descontento con el producto. Asegura vendedor que incrementará su control de calidad. Efectúa reembolso total."
+    },
+    {
+      "estrellas": 3,
+      "real": "neutro",
+      "pred": "negativo",
+      "confianza": 0.9829999804496765,
+      "texto": "Mala Muy mala, se ve mal y no regula"
+    },
+    {
+      "estrellas": 3,
+      "real": "neutro",
+      "pred": "negativo",
+      "confianza": 0.9810000061988831,
+      "texto": "mala calidad no es nada buena, te quemas las manos y los labios."
+    },
+    {
+      "estrellas": 3,
+      "real": "neutro",
+      "pred": "negativo",
+      "confianza": 0.9789999723434448,
+      "texto": "Mario de Armas El producto no llegó en el tiempo indicado, exactamente 24 días después, es lamentable que pasen estas cosas, ya no me sirve el producto para la fecha en la que ha llegado."
+    },
+    {
+      "estrellas": 3,
+      "real": "neutro",
+      "pred": "negativo",
+      "confianza": 0.9779999852180481,
+      "texto": "Envío rápido, calidad mala No es de buena calidad, no se mantiene hinchado, con el peso de una persona de 70kg se desinfla en un momento..."
+    },
+    {
+      "estrellas": 3,
+      "real": "neutro",
+      "pred": "negativo",
+      "confianza": 0.9760000109672546,
+      "texto": "Decepcionada En poco tiempo el asa que sube y baja ya no funciona correctamente. Estoy decepcionada, ya que era para utilizar todas las semanas."
+    }
+  ],
+  "errores_tipos": {
+    "negativo->neutro": 390,
+    "negativo->positivo": 19,
+    "neutro->negativo": 202,
+    "neutro->positivo": 192,
+    "positivo->negativo": 22,
+    "positivo->neutro": 289
+  }
+}
